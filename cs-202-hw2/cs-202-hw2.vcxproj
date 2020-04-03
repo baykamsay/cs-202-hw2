@@ -138,6 +138,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DecisionTree.h" />
+    <ClInclude Include="DecisionTreeNode.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DecisionTree.cpp" />
+    <ClCompile Include="DecisionTreeNode.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
