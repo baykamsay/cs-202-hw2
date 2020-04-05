@@ -11,6 +11,13 @@
 using namespace std;
 
 class DecisionTreeNode {
-
+private:
+    DecisionTreeNode();
+    DecisionTreeNode(const bool isLeaf, const int data);
+    bool isLeaf;
+    int data; // class decision if it is a leaf, feature index if it is not
+    DecisionTreeNode* leftChildPtr;
+    DecisionTreeNode* rightChildPtr;
+    friend class DecisionTree;
 };
 #endif
