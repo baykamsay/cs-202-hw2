@@ -12,24 +12,10 @@ using namespace std;
 int main() {
     DecisionTree* tree = new DecisionTree();
 
-    tree->train("train_data.txt", 498, 21);
+    tree->train("train_data.txt", 498, 21); // train
+    tree->print(); // print the tree
+    cout << "Accuracy: " << tree->test("test_data.txt", 473) << endl; // print the accuracy
 
-    bool* arr = new bool[21];
-    for (int i = 0; i < 16; i++) {
-        arr[i] = 0;
-    }
-    arr[16] = 1;
-    arr[17] = 1;
-    arr[18] = 0;
-    arr[19] = 1;
-    arr[20] = 1;
-
-    tree->print();
-
-    cout << tree->predict(arr);
-
-    delete[] arr;
     delete tree;
-
     return 0;
 }

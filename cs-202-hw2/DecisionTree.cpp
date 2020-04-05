@@ -29,8 +29,7 @@ void DecisionTree::destroyTree(DecisionTreeNode*& treePtr) {
     }
 }
 
-double DecisionTree::calculateEntropy(const int* classCounts, const int numClasses)
-{
+double DecisionTree::calculateEntropy(const int* classCounts, const int numClasses) {
     double result = 0; // FIX CLASS COUNTS
     int sum = 0;
 
@@ -51,8 +50,7 @@ double DecisionTree::calculateEntropy(const int* classCounts, const int numClass
 
 double DecisionTree::calculateInformationGain(const bool** data, const int* labels, 
     const int numSamples, const int numFeatures, const bool* usedSamples, 
-    const int featureId)
-{   
+    const int featureId) {   
     // calculate parent entropy
     int totClass = 0;
     int parentClasses = 0;
@@ -253,6 +251,7 @@ void DecisionTree::readFile(const string fileName, const int numSamples, const i
 
 int DecisionTree::predict(const bool* data) {
     if (root == NULL) { // if train is not called
+        cout << "Train is not called" << endl;
         return -1;
     }
 
@@ -272,7 +271,44 @@ int DecisionTree::predict(const bool* data, const DecisionTreeNode* currentNodeP
     }
 }
 
+double DecisionTree::test(const bool** data, const int* labels, const int numSamples) {
+    
+    int truePredictions = 0;
+
+    for (int i = 0; i < numSamples; i++) {
+        int prediction = predict(data[i]);
+
+        if (prediction == labels[i]) {
+            truePredictions++;
+        }
+    }
+
+    return (double) truePredictions / numSamples;
+}
+
+double DecisionTree::test(const string fileName, const int numSamples) {
+    bool** data = new bool* [numSamples];
+    for (int i = 0; i < numSamples; i++) {
+        data[i] = new bool[numFeatures];
+    }
+    int* labels = new int[numSamples];
+
+    readFile(fileName, numSamples, numFeatures, data, labels);
+    double result = test((const bool**)data, labels, numSamples);
+
+    for (int i = 0; i < numSamples; i++) {
+        delete[] data[i];
+    }
+    delete[] data;
+    delete[] labels;
+    return result;
+}
+
 void DecisionTree::print() {
+    if (root == NULL) {
+        cout << "Empty tree!" << endl;
+        return;
+    }
     print(root, 0);
 }
 
