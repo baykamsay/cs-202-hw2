@@ -9,7 +9,7 @@
 #define __DECISIONTREE_H
 
 using namespace std;
-#include "DecisionTreeNode.h";
+#include "DecisionTreeNode.h"
 
 class DecisionTree {
 public:

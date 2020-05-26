@@ -71,7 +71,6 @@ double DecisionTree::calculateInformationGain(const bool** data, const int* labe
             classCounts[labels[i] - 1]++;
         }
     }
-
     double parentEntropy = calculateEntropy(classCounts, totClass);
     delete[] classCounts;
 
@@ -124,7 +123,6 @@ double DecisionTree::calculateInformationGain(const bool** data, const int* labe
     double splitEntropy = ((double) leftClasses / parentClasses) * leftEntropy
         + ((double) rightClasses / parentClasses) * rightEntropy;
     double informationGain = parentEntropy - splitEntropy;
-    
     return informationGain;
 }
 
